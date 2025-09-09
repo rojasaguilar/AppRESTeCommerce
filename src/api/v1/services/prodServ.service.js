@@ -29,11 +29,13 @@ export const getProdServItem = async (id, keyType) => {
   }
 };
 
-// export const postProdServItem = async (paProdServItem) => {
-//   try {
-//     const newProdServItem = new ProdServ(paProdServItem);
-//     return await newProdServItem.save();
-//   } catch (error) {
-//     throw error;
-//   }
-// };
+//POST
+
+export const postProdServItem = async (paProdServItem) => {
+  try {
+    const newProdServItem = new ProdServ(paProdServItem);
+    return await newProdServItem.save();
+  } catch (error) {
+    throw error;
+  }
+};
