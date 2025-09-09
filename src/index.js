@@ -1,12 +1,17 @@
 import config from './config/config.js';
 import app from './app.js';
 
-app.listen(app.get('port'), () => {
-  console.log(
-    `Server is running on: http://${config.HOST}:${app.get('port')}${
-      config.API_URL
-    }`
-  );
-});
+import connectDB from './config/database.config.js';
+import mongoose from 'mongoose';
 
-console.log(`PUERTO ${process.env.PORT}`);
+connectDB();
+
+mongoose.connection.once('open', async () => {
+  app.listen(app.get('port'), () => {
+    console.log(
+      `Server is running on: http://${config.HOST}:${app.get('port')}${
+        config.API_URL
+      }`
+    );
+  });
+});

@@ -1,8 +1,12 @@
 import express from 'express';
+
 import morgan from 'morgan';
 import cors from 'cors';
 
 import config from './config/config.js';
+
+//IMPORT ROUTES
+import routerAPI from './api/v1/routes/index.js';
 
 const app = express();
 
@@ -28,5 +32,7 @@ app.get(`/DrFIC`, (req, res) => {
     <p> eCommerce: <b>${api}/api-docs</b> for more information.</p>`
   );
 });
+
+routerAPI(app);
 
 export default app;
