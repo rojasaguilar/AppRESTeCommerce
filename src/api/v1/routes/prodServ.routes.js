@@ -8,5 +8,9 @@ router
   .route('/')
   .get(prodServController.getProdServList)
   .post(prodServController.postProdServItem);
-router.get('/:id', prodServController.getProdServItem);
+router
+  .route('/:id')
+  .get(prodServController.getProdServItem)
+  .put(prodServController.putProdServItem)
+  .delete(prodServController.deleteProdServItem);
 export default router;

@@ -37,8 +37,44 @@ export const postProdServItem = async (req, res, next) => {
     );
     if (!newProdServItem) {
       throw Boom.badRequest('No se pudo crear el Prodycto y/o Servicio');
-    }else if(newProdServItem){
+    } else if (newProdServItem) {
       return res.status(201).json(newProdServItem);
     }
   } catch (error) {}
+};
+
+export const putProdServItem = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    console.log('FIC: controller id -> ', id);
+    const ProdServItem = req.body;
+    console.log('FIC: controller body -> ', ProdServItem);
+    const updatedProdServItem = await ProdServServices.putProdServItem(
+      id,
+      ProdServItem
+    );
+    if (!updatedProdServItem) {
+      throw Boom.badRequest('No se pudo actualizar el producto o servicio.');
+    } else if (updatedProdServItem) {
+      res.status(200).json(updatedProdServItem);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const deleteProdServItem = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    console.log('FIC: controller id -> ', id);
+
+    const deletedProdServItem = await ProdServServices.deleteProdServItem(id);
+    if (!deletedProdServItem) {
+      throw Boom.badRequest('No se pudo borrar el producto o servicio.');
+    } else if (deletedProdServItem) {
+      res.status(200).json(deletedProdServItem);
+    }
+  } catch (error) {
+    next(error);
+  }
 };
